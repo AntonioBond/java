@@ -39,6 +39,20 @@ public class Hero {
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             position.y += speed;
         }
+        if(Gdx.input.isTouched()){
+            if(Gdx.input.getX() < position.x + 32){
+                position.x -= speed;
+            }
+            if(Gdx.input.getX() > position.x + 32){
+                position.x += speed;
+            }
+            if(Gdx.graphics.getHeight() - Gdx.input.getY() < position.y + 32){
+                position.y -= speed;
+            }
+            if(Gdx.graphics.getHeight() - Gdx.input.getY() > position.y + 32){
+                position.y += speed;
+            }
+        }
         if(position.y > 720) {
             position.y = -64;
         }
