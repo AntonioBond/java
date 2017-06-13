@@ -14,11 +14,15 @@ public class Hero {
     Texture texture;
     Vector2 position;
     float speed;
+    int fireRate;
+    int fireCounter;
 
     public Hero(){
         texture = new Texture("ship64.png");
         speed = 8.0f;
         position = new Vector2(100,328);
+        fireCounter = 0;
+        fireRate = 12;
 
     }
 
@@ -64,6 +68,14 @@ public class Hero {
         }
         if(position.x > 1216){
             position.x = 1216;
+        }
+    }
+    public void fire() {
+        for (int i = 0; i < MyGdxGame.bullets.length; i++){
+            if(!MyGdxGame.bullets[i].active){
+                MyGdxGame.bullets[i].enable(position.x + 64, position.y +32);
+                break;
+            }
         }
     }
 }
