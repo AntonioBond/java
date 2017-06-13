@@ -11,6 +11,8 @@ public class Asteroid {
     static Texture texture;
     Vector2 position;
     float speed;
+    float angle;
+    float scale;
 
     public Asteroid(){
         if (texture == null) {
@@ -19,19 +21,26 @@ public class Asteroid {
 
         position = new Vector2(1280+(float)Math.random()*1280, (float)Math.random()*720);
         speed = 4.0f+ (float)Math.random() * 4.0f;
+        angle = (float)Math.random()*360;
+        scale = 0.5f + (float)Math.random() * 2.0f;
     }
 
     public void recreate() {
         position.x = 1280+(float)Math.random()*1280;
         position.y = (float)Math.random()*720;
         speed = 4.0f+ (float)Math.random() * 4.0f;
+        angle = (float)Math.random()*360;
+        scale = 0.5f + (float)Math.random() * 2.0f;
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(texture, position.x - 32, position.y - 32);
+        batch.draw(texture, position.x - 32, position.y - 32, 32, 32, 64, 64, scale,
+                scale, angle, 0,0, 64, 64, false, false);
+
     }
     public void update(){
         position.x -= speed;
+        angle += speed / 2;
         if(position.x < -100){
             recreate();
         }
