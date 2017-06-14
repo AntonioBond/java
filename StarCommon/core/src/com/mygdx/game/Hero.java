@@ -43,6 +43,13 @@ public class Hero {
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             position.y += speed;
         }
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            fireCounter++;
+            if(fireCounter>=fireRate){
+                fireCounter = 0;
+                fire();
+            }
+        }
         if(Gdx.input.isTouched()){
             if(Gdx.input.getX() < position.x + 32){
                 position.x -= speed;

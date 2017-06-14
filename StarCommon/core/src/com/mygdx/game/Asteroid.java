@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -13,6 +14,7 @@ public class Asteroid {
     float speed;
     float angle;
     float scale;
+    Circle circle;
 
     public Asteroid(){
         if (texture == null) {
@@ -23,6 +25,7 @@ public class Asteroid {
         speed = 4.0f+ (float)Math.random() * 4.0f;
         angle = (float)Math.random()*360;
         scale = 0.5f + (float)Math.random() * 2.0f;
+        circle = new Circle(position.x, position.y, 32*scale);
     }
 
     public void recreate() {
@@ -31,6 +34,8 @@ public class Asteroid {
         speed = 4.0f+ (float)Math.random() * 4.0f;
         angle = (float)Math.random()*360;
         scale = 0.5f + (float)Math.random() * 2.0f;
+        circle.radius = 32 * scale;
+
     }
 
     public void render(SpriteBatch batch) {
@@ -40,6 +45,8 @@ public class Asteroid {
     }
     public void update(){
         position.x -= speed;
+        circle.x = position.x;
+        circle.y = position.y;
         angle += speed / 2;
         if(position.x < -100){
             recreate();

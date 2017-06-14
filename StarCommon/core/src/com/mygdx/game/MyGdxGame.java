@@ -57,6 +57,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		for (int i = 0; i < bullets.length; i++) {
 			if (bullets[i].active) {
 				bullets[i].update();
+				
 			}
 		}
 	}
